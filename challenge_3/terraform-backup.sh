@@ -10,13 +10,12 @@
 
 TERRAFORM=$(which terraform)
 
-# extract the version number from the Terraform binary
+# step 1: extract the version number from the Terraform binary
 version=$($TERRAFORM --version | grep -Eo "[0-9]+\.[0-9]+\.[0-9]+")
-versioned_filename=$TERRAFORM-$version
 
-# create a backup
+# step 2: create a backup
+versioned_filename=$TERRAFORM-$version
 cp $TERRAFORM $versioned_filename
 
-# print the full filename out
-echo $versioned_filename
-
+# step 3: print the full filename out
+printf "%s\n" "$versioned_filename"
