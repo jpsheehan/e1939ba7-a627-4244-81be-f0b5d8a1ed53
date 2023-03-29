@@ -11,32 +11,31 @@
 URL=https://releases.hashicorp.com
 DST_PATH=/usr/bin/terraform
 
-# grab the path to the page that has the latest terraform version
+# step 1: grab the path to the page that has the latest terraform version
 all_versions_url=$URL/terraform/
 version_path=$(\
 	curl -s $all_versions_url \
 	| grep -m 1 -Eo "terraform\/[0-9]+\.[0-9]+\.[0-9]\/")
 
-# grab the URL of the archive of the latest version
+# step 2: grab the URL of the archive of the latest version
 latest_version_url=$URL/$version_path
 archive_url=$(\
 	curl -s $latest_version_url \
 	| grep -m 1 "data-os=\"linux\" data-arch=\"amd64\"" \
 	| grep -Eo "https://[^\"]*")
 
-# download the latest version to a temporary file
+# step 3: download the latest version to a temporary file
 TEMP_FILE=/tmp/terraform.zip
 curl -o $TEMP_FILE $archive_url
 
-# extract the contents of the zip archive to a temporary directory
+# step 4: extract the contents of the zip archive to a temporary directory
 TEMP_DIR=/tmp/terraform
 unzip $TEMP_FILE -d $TEMP_DIR
 
-# copy the binary to the output location
+# step 5: copy the binary to the output location
 SRC_PATH=$TEMP_DIR/terraform
 cp $SRC_PATH $DST_PATH
 
-# cleanup
+# step 6: cleanup
 rm -f $TEMP_FILE
 rm -Rf $TEMP_DIR/*
-
