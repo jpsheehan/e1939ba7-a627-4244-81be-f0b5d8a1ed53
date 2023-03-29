@@ -16,8 +16,8 @@ Usually, one could use the command `date -d "09:00 NZST"` on a system that has U
 However, because NZDT is in effect (until April 3rd), this isn't a valid date as far as the `date` program is concerned.
 But, I do know that NZST is exactly 12 hours ahead of UTC so we can use that instead.
 
-Knowing that Monday 9am NZST is equivalent to 9pm UTC means that we can run `crontab -e` as a superuser (because our script must be run with write permissions to `/usr/bin`) and add the configuration line that follows this paragraph.
-It reads: "Every Sunday at 9:00pm run the program `~/bin/terraform-update.sh`, discarding any output written to its standard output and standard error streams".
+Knowing that Monday 9am NZST is equivalent to 9pm UTC the previous day means that we can run `crontab -e` as a superuser (because our script must be run with write permissions to `/usr/bin`) and add the configuration line that follows this paragraph.
+It reads: "Every Sunday at 9:00pm run the program `/root/bin/terraform-update.sh`, discarding any output written to its standard output and standard error streams".
 
 ```cron
 0 21 * * SUN /root/bin/terraform-update.sh > /dev/null 2>&1
