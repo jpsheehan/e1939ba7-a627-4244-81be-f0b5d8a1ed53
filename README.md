@@ -1,18 +1,16 @@
-# Senior Application Support Specialist Interview
+# Specification
 
-## Specification
-
-### Problem
+## Problem
 
 We want to automatically update Terraform https://www.terraform.io/ on our deployment server every week.
 
-### Guide
+## Guide
 
 - Our deployment server is either Windows Server 2019 or a modern Linux distro, you may choose the one that suits you for this challenge
 - Use a scripting/programming language you are comfortable with, be ready to justify your choice
 - Please upload your work to a Github repository and share the URL with us
 
-## Solution
+# Solution
 
 I have chosen to use a modern Linux distro as the operating system that my solution will run on.
 I have also chosen to use POSIX shell as my scripting language.
